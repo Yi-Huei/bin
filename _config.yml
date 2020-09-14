@@ -1,0 +1,8 @@
+# Book settings
+title: Python紀事
+author: Yi Huei
+logo: myName.png
+
+latex:
+  latex_documents:
+    targetname: book.tex
