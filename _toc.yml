@@ -1,3 +1,12 @@
 - file: intro
 - file: 今彩539中獎預測
 - file: 波斯頓房價預測
+- file: 非監督學習演算法
+  sections:
+    - file: Kmeans
+    - file: Kmeans++尋找起始點
+    - file: Kmeans決定集群數目方法
+    - file: Agglomerative Hieraichical
+    - file: DBSCAN
+    
+
