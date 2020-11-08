@@ -36,6 +36,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="非監督學習演算法" href="非監督學習演算法.html" />
     <link rel="prev" title="今彩539 中獎預測" href="今彩539中獎預測.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,6 +86,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    利用Scikit Learn預測波斯頓房價
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="非監督學習演算法.html">
+   非監督學習演算法
   </a>
  </li>
 </ul>
@@ -531,9 +537,9 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.41564029, -0.47694524, -1.34147204, -0.26761547, -0.85326393,
-        1.21314771, -0.54467634,  1.14545048, -0.76525084, -1.13651027,
-        0.10929608,  0.44690875, -1.0678675 ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.37972154, -0.49728974, -1.19241966, -0.28828791, -0.93860831,
+       -0.16691346,  0.05770603, -0.15897378, -0.84923229, -0.74943601,
+       -0.20116703,  0.36349628, -0.14759848])
 </pre></div>
 </div>
 </div>
@@ -563,9 +569,9 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.86149719,  0.79872504, -0.01420446,  0.71161217, -1.90502076,
-        2.84458346, -0.17568355, -3.28076872,  2.01159855, -1.72651142,
-       -1.8745153 ,  0.80820441, -3.64112874])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.13086873,  1.06647572,  0.09167089,  0.69005858, -2.15799533,
+        2.7635342 ,  0.14636638, -3.0951146 ,  2.80086855, -1.96523454,
+       -2.14636742,  0.78589611, -3.68985391])
 </pre></div>
 </div>
 </div>
@@ -578,7 +584,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22.253465346534668
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22.853217821782206
 </pre></div>
 </div>
 </div>
@@ -591,27 +597,27 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([27.94070458, 24.86456711, 29.99872503, 21.96583596, 20.81833258,
-       33.94841831, 31.37005194, 36.25409609, 22.29106557, 20.99997197,
-       20.23068788, 36.03045199, 30.38192786,  7.91821278, 10.82658132,
-       18.24473498, 35.14621372, 30.88681803, 32.74581018, 23.07939017,
-       32.86118257, 17.63451674, 32.50598016, 28.82865476, 25.90564374,
-       20.60121368, 19.21788133, 20.10233774, 27.89198538, 36.55182218,
-       20.09708593, 29.52035965, 23.46591614,  9.02584471, 21.3979327 ,
-       34.40479407,  7.66487377, 17.85574881, 30.44574693, 24.70728488,
-       26.68159921, 19.31463965, 18.98819783, 14.58636777, 25.28447364,
-       23.07601658, 22.83660365, 24.08451527, 14.58370904, 22.88811328,
-       30.04534966, 20.40697682, 26.55018081, 12.58844018, 24.26344135,
-       13.78348199, 24.34424623, 21.09002638, 16.96583763, 28.2079575 ,
-       19.41780544, 18.13233498, 11.45660203, 27.18416532, 19.03601089,
-       41.09517968, 22.00690958, 13.9534007 , 28.62635107, 13.48529198,
-       20.64835816, 26.56089993, 36.763908  , 30.87643783, 26.8108005 ,
-       20.11632235, 40.90838878, 33.82391308, 14.35037   , 33.82721999,
-       21.12384057, 30.80676837, 22.01417511, 20.42627634, 17.03959513,
-       17.46702752, 11.66982414,  9.55047578, 13.44332647, 18.41863497,
-       29.98358573, 10.03408114, 26.1453693 , 13.58824762, 18.84730774,
-       31.54688133, 21.04991416, 44.00407757,  9.08486012, 14.51683237,
-       15.08798291, 18.83770171])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([24.86506452, 30.50978142, 25.95808216, 20.91013385, 26.76976524,
+       17.47831168, 22.75126252, 15.74795015, 11.78185986, 18.01164711,
+        6.51789504, 14.468403  , 41.32876333, 20.63154787, 28.98507235,
+       20.49719447, 15.6633102 , 18.7601521 , 12.60578741, 25.0365703 ,
+       21.56033218,  9.18549737, 30.1432942 , 23.23614955, 27.21801088,
+       23.90065237, 22.81803001, 14.59620406, 22.81550803, 20.65691606,
+       13.71387575, 37.18302166, 31.07855835, 24.1029135 , 20.29577775,
+       25.1586361 , 14.60589919,  5.97260756, 33.54154977, 15.89420022,
+       21.37829032, 31.69840924, 15.68904361, 35.61237928, 20.02220057,
+       24.01108848, 13.31577341, 29.37567087, 30.90517383, 16.61991774,
+       32.43519019, 34.71755942, 19.1950607 , 25.27558389, 14.10012207,
+       28.52198618, 35.45877545, 35.03648936, 21.45419416, 22.84688099,
+       17.44160813, 20.01773496, 35.9940572 , 19.51637448, 27.88802734,
+       14.76237167, 25.34667352, 20.62646166, 20.72873639, 17.43187302,
+       30.95914098,  4.97714433, 20.3703482 ,  9.02260952, 25.68543146,
+       20.23589624, 29.2888295 , 24.68688118, 29.14158219, 24.82978601,
+       15.34364012, 16.35237879, 26.99586202, 22.41439536, 23.59393972,
+       -4.83801312, 35.42429964, 18.64940405, 20.90311743, 19.47025681,
+       11.01392973, 19.88296437, 15.67515435, 31.29381679, 20.53591612,
+        6.85807054, 23.39075398, 23.99073576, 20.68315267, 16.23136699,
+        8.07095247, 22.91920667])
 </pre></div>
 </div>
 </div>
@@ -626,8 +632,8 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 = 0.73
-MSE = 26.24
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 = 0.79
+MSE = 15.42
 </pre></div>
 </div>
 </div>
@@ -656,8 +662,8 @@ MSE = 26.24
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 = 0.55
-MSE = 43.19
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 = 0.76
+MSE = 17.19
 </pre></div>
 </div>
 </div>
@@ -693,6 +699,7 @@ MSE = 43.19
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="今彩539中獎預測.html" title="previous page">今彩539 中獎預測</a>
+    <a class='right-next' id="next-link" href="非監督學習演算法.html" title="next page">非監督學習演算法</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
