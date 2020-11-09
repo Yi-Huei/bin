@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>使用sympy解聯立方程式，並建立視窗供使用者輸入方程式 &#8212; Python紀事</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="使用矩陣解聯立方程式" href="使用矩陣解聯立方程式.html" />
+    <link rel="prev" title="Sympy 與 Numpy" href="聯立方程式Sympy與Numpy.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/myName.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Python紀事</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   About Me
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="聯立方程式Sympy與Numpy.html">
+   Sympy 與 Numpy
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   使用sympy解聯立方程式，並建立視窗供使用者輸入方程式
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="使用矩陣解聯立方程式.html">
+   使用矩陣解聯立方程式
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="梯度下降法練習題.html">
+   梯度下降法練習題
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="今彩539中獎預測.html">
+   今彩539 中獎預測
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="波斯頓房價預測.html">
+   線性回歸預測波斯頓房價
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="非監督學習演算法.html">
+   非監督學習演算法
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/使用sympy解聯立方程式，並建立視窗供使用者輸入方程式.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/使用sympy解聯立方程式，並建立視窗供使用者輸入方程式.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/使用sympy解聯立方程式，並建立視窗供使用者輸入方程式.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="sympy">
+<h1>使用sympy解聯立方程式，並建立視窗供使用者輸入方程式<a class="headerlink" href="#sympy" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://www.math-exercises.com/equations-and-inequalities/linear-equations-and-inequalities">測試方程式來源</a></p>
+<p>使用套件有tkinter、sympy，解說分別為</p>
+<ol class="simple">
+<li><p>tkinter: 桌面應用程式（Desktop Application)，程式圖形化應用介面(GUI)，讓使用者透過圖形化界面與程式互動，<a class="reference external" href="https://blog.techbridge.cc/2019/09/21/how-to-use-python-tkinter-to-make-gui-app-tutorial/">參考網址</a></p></li>
+<li><p>sympy:聯立方程式計算套件，使用前須先安裝，在CMD下鍵入pip install sympy</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>  <span class="c1">#tkinter為一視窗介面函數</span>
+<span class="kn">from</span> <span class="nn">sympy.solvers</span> <span class="kn">import</span> <span class="n">solve</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span>
+<span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">sympify</span>
+
+<span class="c1">#自訂函數，取得使用者輸入公式，進行解析</span>
+<span class="k">def</span> <span class="nf">calculate</span><span class="p">():</span>
+    <span class="c1">#取得輸入計算式</span>
+    <span class="n">strCal</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">)</span>
+    <span class="c1">#以行分割字串</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">strCal</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;使用者輸入文字:&quot;</span><span class="p">,</span><span class="n">lines</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1">#使用sympy計算</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1">#以等號分割左右</span>
+            <span class="n">line0</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+            <span class="n">strEq0</span> <span class="o">=</span> <span class="s2">&quot;Eq(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">line0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line0</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#帶入變數</span>
+            <span class="c1">#print(strEq0)</span>
+            <span class="c1">#計算</span>
+            <span class="n">strResult</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">sympify</span><span class="p">(</span><span class="n">strEq0</span><span class="p">))</span> 
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">line0</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+            <span class="n">strEq0</span> <span class="o">=</span> <span class="s2">&quot;Eq(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">line0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line0</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#帶入式一變數</span>
+            <span class="n">line1</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+            <span class="n">strEq1</span> <span class="o">=</span> <span class="s2">&quot;Eq(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">line1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#帶入式二變數</span>
+            <span class="c1">#計算</span>
+            <span class="n">strResult</span> <span class="o">=</span> <span class="n">solve</span><span class="p">([</span><span class="n">sympify</span><span class="p">(</span><span class="n">strEq0</span><span class="p">),</span> 
+                               <span class="n">sympify</span><span class="p">(</span><span class="n">strEq1</span><span class="p">)])</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">line0</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+            <span class="n">strEq0</span> <span class="o">=</span> <span class="s2">&quot;Eq(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">line0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line0</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#帶入式一變數</span>
+            <span class="n">line1</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+            <span class="n">strEq1</span> <span class="o">=</span> <span class="s2">&quot;Eq(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">line1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#帶入式二變數</span>
+            <span class="n">line2</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+            <span class="n">strEq2</span> <span class="o">=</span> <span class="s2">&quot;Eq(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">line2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#帶入式三變數</span>
+            <span class="n">strResult</span> <span class="o">=</span> <span class="n">solve</span><span class="p">([</span><span class="n">sympify</span><span class="p">(</span><span class="n">strEq0</span><span class="p">),</span> 
+                               <span class="n">sympify</span><span class="p">(</span><span class="n">strEq1</span><span class="p">),</span> 
+                               <span class="n">sympify</span><span class="p">(</span><span class="n">strEq2</span><span class="p">)])</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">line0</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+            <span class="n">strEq0</span> <span class="o">=</span> <span class="s2">&quot;Eq(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">line0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line0</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#帶入式一變數</span>
+            <span class="n">line1</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+            <span class="n">strEq1</span> <span class="o">=</span> <span class="s2">&quot;Eq(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">line1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#帶入式二變數</span>
+            <span class="n">line2</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+            <span class="n">strEq2</span> <span class="o">=</span> <span class="s2">&quot;Eq(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">line2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#帶入式三變數</span>
+            <span class="n">line3</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+            <span class="n">strEq3</span> <span class="o">=</span> <span class="s2">&quot;Eq(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">line3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line3</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#帶入式四變數</span>
+            <span class="n">strResult</span> <span class="o">=</span> <span class="n">solve</span><span class="p">([</span><span class="n">sympify</span><span class="p">(</span><span class="n">strEq0</span><span class="p">),</span> 
+                               <span class="n">sympify</span><span class="p">(</span><span class="n">strEq1</span><span class="p">),</span> 
+                               <span class="n">sympify</span><span class="p">(</span><span class="n">strEq2</span><span class="p">),</span>
+                               <span class="n">sympify</span><span class="p">(</span><span class="n">strEq3</span><span class="p">)])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">strResult</span> <span class="o">=</span> <span class="s2">&quot;錯誤&quot;</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">strResult</span> <span class="o">=</span> <span class="s2">&quot;錯誤方程式&quot;</span>
+    <span class="c1">#顯示答案</span>
+    <span class="n">strVar</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">strResult</span><span class="p">)</span>
+
+<span class="c1">#介面</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+<span class="n">window</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sympy解聯立方程式&#39;</span><span class="p">)</span>
+<span class="n">window</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;300x300+250+150&quot;</span><span class="p">)</span>
+<span class="c1">#第一行標示文字</span>
+<span class="n">label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;請輸入方程式，</span><span class="se">\n</span><span class="s1">2個式子以上請使用enter鍵換行，</span><span class="se">\n</span><span class="s1">可解1次~4次方程式&#39;</span><span class="p">,</span>
+                <span class="n">font</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Arial&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
+                <span class="n">width</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">label</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+
+<span class="c1">#第二行輸入方程式</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">window</span><span class="p">,</span>
+              <span class="n">width</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">text</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+
+<span class="c1">#第三行建立計算按鈕</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> 
+                   <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;計算&#39;</span><span class="p">,</span> 
+                   <span class="n">command</span> <span class="o">=</span> <span class="n">calculate</span><span class="p">)</span>
+<span class="n">button</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+
+<span class="c1">#第四行顯示答案</span>
+<span class="n">strVar</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>  <span class="c1">#建立可更改Label之變數</span>
+<span class="n">strVar</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;解答&quot;</span><span class="p">)</span>
+<span class="n">resultLab</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span>
+                     <span class="n">textvariable</span> <span class="o">=</span> <span class="n">strVar</span><span class="p">,</span>
+                     <span class="n">font</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Arial&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
+                     <span class="n">width</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">resultLab</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+
+<span class="n">window</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>使用者輸入文字: [&#39;10*x-1=15-6*x&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>執行結果
+<img alt="" src="https://github.com/Yi-Huei/bin/blob/master/images/TK_solution.png?raw=true" /></p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="聯立方程式Sympy與Numpy.html" title="previous page">Sympy 與 Numpy</a>
+    <a class='right-next' id="next-link" href="使用矩陣解聯立方程式.html" title="next page">使用矩陣解聯立方程式</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Yi Huei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

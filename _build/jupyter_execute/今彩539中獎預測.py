@@ -103,4 +103,3 @@ nCr(5,5)*nCr(34,0)
 #一獎機率
 p1 = nCr(5,5)*nCr(34,0)/nCr(allNums, trials)
 print('一獎機率:{:2f}%'.format(p1*100))
-

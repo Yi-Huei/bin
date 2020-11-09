@@ -1,4 +1,8 @@
 - file: intro
+- file: 聯立方程式Sympy與Numpy
+- file: 使用sympy解聯立方程式，並建立視窗供使用者輸入方程式
+- file: 使用矩陣解聯立方程式
+- file: 梯度下降法練習題
 - file: 今彩539中獎預測
 - file: 波斯頓房價預測
 - file: 非監督學習演算法

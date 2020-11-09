@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>利用Scikit Learn預測波斯頓房價 &#8212; Python紀事</title>
+    <title>線性回歸預測波斯頓房價 &#8212; Python紀事</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -79,13 +79,33 @@
 </ul>
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="聯立方程式Sympy與Numpy.html">
+   Sympy 與 Numpy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="使用sympy解聯立方程式，並建立視窗供使用者輸入方程式.html">
+   使用sympy解聯立方程式，並建立視窗供使用者輸入方程式
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="使用矩陣解聯立方程式.html">
+   使用矩陣解聯立方程式
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="梯度下降法練習題.html">
+   梯度下降法練習題
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="今彩539中獎預測.html">
    今彩539 中獎預測
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   利用Scikit Learn預測波斯頓房價
+   線性回歸預測波斯頓房價
   </a>
  </li>
  <li class="toctree-l1">
@@ -184,7 +204,49 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   步驟一: 載入資料
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   步驟四、分割資料
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   步驟三、標準化
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   步驟五、選擇演算法
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   步驟六、進行訓練
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#score-model">
+   步驟七、Score Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   步驟八、 評估
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   程式碼
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -193,28 +255,35 @@
         
               <div>
                 
-  <div class="section" id="scikit-learn">
-<h1>利用Scikit Learn預測波斯頓房價<a class="headerlink" href="#scikit-learn" title="Permalink to this headline">¶</a></h1>
-<p>資料來源:Scikit learn<br />
-網址:https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html#sklearn.datasets.load_boston</p>
+  <div class="section" id="id1">
+<h1>線性回歸預測波斯頓房價<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>從本章開始進入機器學習的領域(Mechine learning)，監督式學習<br />
+機器學習分為8個步驟:</p>
+<ol class="simple">
+<li><p>收集資料(Dataset)</p></li>
+<li><p>清理資料(Data cleaning)</p></li>
+<li><p>特徵工程(Feature Engineerin)</p></li>
+<li><p>資料分割為訓練組與測試組(Split)</p></li>
+<li><p>選擇演算法(Learning Algorithm)</p></li>
+<li><p>訓練模型(Train Model)</p></li>
+<li><p>打分數(Score Model)</p></li>
+<li><p>評估模型(Evalute Model)</p></li>
+</ol>
+<p><img alt="如圖:" src="https://github.com/Yi-Huei/bin/blob/master/images/ML_process.png?raw=true" /><br />
+圖片來源:https://yourfreetemplates.com/free-machine-learning-diagram/</p>
+<p>本篇將透過波斯頓房價資料集進行機器學習_監督式學習，而本資料集為Scikit learn所收集之。  <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html#sklearn.datasets.load_boston">參考網站</a></p>
+<p><a class="reference external" href="https://scikit-learn.org/stable/datasets/index.html">Scikit learn其他資料集</a></p>
+<div class="section" id="id2">
+<h2>步驟一: 載入資料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>由於該資料集已透過Scikit Learn收集並清理，所以跳過第一步與第二步直接進行載入資料。</p>
+<p>清理資料相關知識，往後再講。</p>
+<p>Scikit learn之資料集可透過以下方式叫出</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#第一步 載入資料</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_boston</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#查看資料</span>
+
+<span class="c1">#查看資料</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">DESCR</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -490,15 +559,18 @@ dtype: int64
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="id3">
+<h2>步驟四、分割資料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>在確認資料無誤後，進行資料切割，此步驟會將全部資料分割為”訓練資料”與”測試資料”<br />
-使用函數為train_test_split(X, y, test_size=.2)<br />
+<strong>為了避免訓練資料與測試資料相互染污，所以先進行資料分割</strong></p>
+<p>使用函數為<strong>train_test_split(X, y, test_size=.2)</strong><br />
 參數1 : X訓練資料，X測試資料<br />
 參數2 : y訓練資料，y測試資料<br />
 參數3 : 測試資料大小，可使用比例或數量</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#第四步 資料切割</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=.</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
@@ -510,16 +582,19 @@ dtype: int64
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="id4">
+<h2>步驟三、標準化<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>完成步驟四後再進行步驟三</p>
 <p>資料切割後，將特徵資料(X)進行標準化，標準化公式為: (X-平均值) / 標準差<br />
 標準化後的特徵(X)，其值會在-1~1之間<br />
-且訓練資料與測試資料分別使用不同函數<br />
-使用套件為:StandardScaler<br />
+且訓練資料與測試資料分別使用不同函數</p>
+<p>使用套件為:StandardScaler<br />
 訓練資料:.fit_transform(X_train)<br />
 測試資料:.transform(X_test)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 第三步 標準化: (X-Mean)/SD</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
 
 <span class="c1"># 訓練資料處理</span>
@@ -537,21 +612,31 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.37972154, -0.49728974, -1.19241966, -0.28828791, -0.93860831,
-       -0.16691346,  0.05770603, -0.15897378, -0.84923229, -0.74943601,
-       -0.20116703,  0.36349628, -0.14759848])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.37377191, -0.49638739, -0.59845965, -0.27288841, -0.91092661,
+       -1.24330631,  0.94571579,  0.93589883, -0.73719122, -1.0360673 ,
+       -0.25510599,  0.42557876,  2.61593118])
 </pre></div>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="id5">
+<h2>步驟五、選擇演算法<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>從資料來看X與y，皆為連續型變數，可以採用演算法-線性回歸</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#第五步 選擇演算法_ 線性回歸</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 <span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
-
-<span class="c1"># 第六步 訓練</span>
-<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>步驟六、進行訓練<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -563,85 +648,109 @@ dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#X係數</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 取得X係數</span>
 <span class="n">lr</span><span class="o">.</span><span class="n">coef_</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.13086873,  1.06647572,  0.09167089,  0.69005858, -2.15799533,
-        2.7635342 ,  0.14636638, -3.0951146 ,  2.80086855, -1.96523454,
-       -2.14636742,  0.78589611, -3.68985391])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.10340054,  1.11127387,  0.10627195,  0.85782265, -2.33569278,
+        2.34087817, -0.02157817, -3.36401521,  2.54363468, -1.60054961,
+       -2.10731856,  0.55730718, -3.98706378])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#截距</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 取得截距項</span>
 <span class="n">lr</span><span class="o">.</span><span class="n">intercept_</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22.853217821782206
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22.787376237623793
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_std</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 取得測試資料X，帶入模型中進行運算，取得預測y</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_std</span><span class="p">)</span>
 <span class="n">y_pred</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([24.86506452, 30.50978142, 25.95808216, 20.91013385, 26.76976524,
-       17.47831168, 22.75126252, 15.74795015, 11.78185986, 18.01164711,
-        6.51789504, 14.468403  , 41.32876333, 20.63154787, 28.98507235,
-       20.49719447, 15.6633102 , 18.7601521 , 12.60578741, 25.0365703 ,
-       21.56033218,  9.18549737, 30.1432942 , 23.23614955, 27.21801088,
-       23.90065237, 22.81803001, 14.59620406, 22.81550803, 20.65691606,
-       13.71387575, 37.18302166, 31.07855835, 24.1029135 , 20.29577775,
-       25.1586361 , 14.60589919,  5.97260756, 33.54154977, 15.89420022,
-       21.37829032, 31.69840924, 15.68904361, 35.61237928, 20.02220057,
-       24.01108848, 13.31577341, 29.37567087, 30.90517383, 16.61991774,
-       32.43519019, 34.71755942, 19.1950607 , 25.27558389, 14.10012207,
-       28.52198618, 35.45877545, 35.03648936, 21.45419416, 22.84688099,
-       17.44160813, 20.01773496, 35.9940572 , 19.51637448, 27.88802734,
-       14.76237167, 25.34667352, 20.62646166, 20.72873639, 17.43187302,
-       30.95914098,  4.97714433, 20.3703482 ,  9.02260952, 25.68543146,
-       20.23589624, 29.2888295 , 24.68688118, 29.14158219, 24.82978601,
-       15.34364012, 16.35237879, 26.99586202, 22.41439536, 23.59393972,
-       -4.83801312, 35.42429964, 18.64940405, 20.90311743, 19.47025681,
-       11.01392973, 19.88296437, 15.67515435, 31.29381679, 20.53591612,
-        6.85807054, 23.39075398, 23.99073576, 20.68315267, 16.23136699,
-        8.07095247, 22.91920667])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 8.52693127, 36.00629766, 20.06601138, 38.25721239, 26.42509052,
+       25.27419041, 40.40532628, 25.12253174, 20.07820644, 27.56142763,
+       24.96380039, 17.30068864, 23.82243243, 16.41341755, 20.25109311,
+       14.35023311, 15.02683504, 23.18040055, 13.55061543, 21.35436247,
+       27.6348224 , 11.98719692, 21.62461657, 24.08969547, 17.38278759,
+       28.68915128, 23.0500192 , 23.89046879, 20.52667822, 18.09554188,
+       17.38908008, 17.09123991, 32.78592769, 30.8469377 , 22.17484132,
+       19.34628503, 16.43142277, 24.21060035, 20.57833112, 10.79388934,
+       14.14259493,  8.02947613, 11.7770587 , 21.49460504, 17.83663008,
+       23.02146921,  3.96402344,  9.16823932,  6.19782453, 24.88216251,
+       23.36656315, 20.24408248,  9.97245681, 16.8386888 , 21.34544023,
+       24.71929779, 30.15196351, 27.25248165, 13.57811188, 28.95088481,
+       17.63293119, 16.63374275, 22.65230371, 11.48019362, 27.69769756,
+       23.93157992, 21.40375335, 17.99128562, 36.76389876, 23.31376416,
+       26.18746445, 20.76910957, 36.46775194, 20.90414807, 17.34364706,
+       26.31553557, 30.88847084, 22.10916927, 34.00630142, 34.65928949,
+       32.92888149, 14.52023746, 33.16335006, 28.95400673, 17.61671567,
+       13.82427241, 38.89779321, 33.88905049, 21.31536006, 22.23236389,
+       22.77661956, 35.57459978, 16.8322023 , 24.98230214, 32.73988483,
+       33.97524866, 29.21020232, 21.61728476, 23.8360947 , 25.60816067,
+       21.21555163, 11.58663695])
 </pre></div>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="score-model">
+<h2>步驟七、Score Model<a class="headerlink" href="#score-model" title="Permalink to this headline">¶</a></h2>
+<p>步驟六中，我們透過訓練好的模型，計算出測試資料之y的預測值，可與y的原始數據(真實數據)進行比對，比對方法有<span class="math notranslate nohighlight">\(R^2與MSM\)</span>，<span class="math notranslate nohighlight">\(R^2\)</span>公式:</p>
+<p><span class="math notranslate nohighlight">\(
+R^2 = \frac{\sum_i^n (\hat{y_i} - \bar{y_i})}{\sum_i^n ({y_i} - \bar{y_i})}
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(\bar{y_i}真實數據平均值、 \hat{y_i}為y的預測值、 {y_i}真實數據 \)</span></p>
+<p>透過<span class="math notranslate nohighlight">\(R^2\)</span>公式可知以真實數據平均值為基準點，評估預測值到基準點之距離 與 真實數據到基準點之距離之關係。</p>
+<p><span class="math notranslate nohighlight">\(R^2\)</span>會在-1 ~ +1 之間，靠近-1為高度負相關，靠近+1高度正相關，0為完全不相關。</p>
+<p><strong>MSE(mean-square error，均方誤差)，圖示:</strong>
+<img src="https://github.com/Yi-Huei/bin/blob/master/images/MSE.png?raw=true" width="500px" /></p>
+<p>從X軸向畫上一條直線，可取得y的預測值，y真實數據兩點，取兩者間差值，將所有點以如此方法處理便是MSE，公式如下</p>
+<p><span class="math notranslate nohighlight">\(
+MSE = \sum_i^n (\hat{y_i} - y_i)
+\)</span></p>
+<p><strong>MSE值越小，表預測值與真實值差距越小。</strong></p>
+<p>兩者程式如下:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#第七步 準確性: R_square與MSE</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R2 = </span><span class="si">{</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MSE = </span><span class="si">{</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R2 = </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MSE = </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 = 0.79
-MSE = 15.42
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 = 0.78
+MSE = 18.36
 </pre></div>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="id7">
+<h2>步驟八、 評估<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>採用不同演算法，進行訓練，取得<span class="math notranslate nohighlight">\(R^2\)</span>與<span class="math notranslate nohighlight">\(MSE\)</span>，比較哪種演算法較好</p>
+<p>變更演算法-SVR演算法，再計算準確性</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#第八步  評估: 變更演算法-SVR演算法，再計算準確性</span>
-<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>  <span class="c1">#SVM，支援向量機演算法，其中SVR是針對連續變數之統計方式</span>
 <span class="n">svr</span> <span class="o">=</span> <span class="n">SVR</span><span class="p">()</span>
 <span class="n">svr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
@@ -656,15 +765,74 @@ MSE = 15.42
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">svr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_std</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R2 = </span><span class="si">{</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MSE = </span><span class="si">{</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R2 = </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MSE = </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 = 0.76
-MSE = 17.19
+MSE = 20.54
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>程式碼<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>以下為本範例所有程式碼，因為資料經過重新分配，所以結果會有所不同</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_boston</span><span class="p">()</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">target</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=.</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train_std</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_std</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># 線性回歸</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_std</span><span class="p">)</span>
+
+<span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;LinearRegression R2 = </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;LinearRegression MSE = </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># SVM 支援向量機</span>
+<span class="n">svr</span> <span class="o">=</span> <span class="n">SVR</span><span class="p">()</span>
+<span class="n">svr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">svr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_std</span><span class="p">)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SVM R2 = </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SVM MSE = </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression R2 = 0.72
+LinearRegression MSE = 25.79
+SVM R2 = 0.63
+SVM MSE = 34.29
+</pre></div>
+</div>
 </div>
 </div>
 </div>

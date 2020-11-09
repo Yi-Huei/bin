@@ -1,0 +1,636 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>梯度下降法練習題 &#8212; Python紀事</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="今彩539 中獎預測" href="今彩539中獎預測.html" />
+    <link rel="prev" title="使用矩陣解聯立方程式" href="使用矩陣解聯立方程式.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/myName.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Python紀事</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   About Me
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="聯立方程式Sympy與Numpy.html">
+   Sympy 與 Numpy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="使用sympy解聯立方程式，並建立視窗供使用者輸入方程式.html">
+   使用sympy解聯立方程式，並建立視窗供使用者輸入方程式
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="使用矩陣解聯立方程式.html">
+   使用矩陣解聯立方程式
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   梯度下降法練習題
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="今彩539中獎預測.html">
+   今彩539 中獎預測
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="波斯頓房價預測.html">
+   線性回歸預測波斯頓房價
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="非監督學習演算法.html">
+   非監督學習演算法
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/梯度下降法練習題.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/梯度下降法練習題.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/梯度下降法練習題.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   3次方程式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   二次方程式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lab2">
+   Lab2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lab3">
+   Lab3
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>梯度下降法練習題<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>3次方程式<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>目標函數為:<span class="math notranslate nohighlight">\(x^3-2^x+100\)</span></p>
+<p>結果: 學習率0.07以下，且x起始值應為正值</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">fa</span> <span class="o">=</span> <span class="n">a</span><span class="o">**</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">+</span><span class="mi">100</span>
+ 
+<span class="c1"># 目標函數</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> 
+    <span class="n">f</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">fa</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># 目標函數一階導數:</span>
+<span class="k">def</span> <span class="nf">dfunc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">fprime</span> <span class="o">=</span> <span class="n">fa</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">fprime</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">GD</span><span class="p">(</span><span class="n">x_start</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">lr</span><span class="p">):</span>    
+    <span class="sd">&quot;&quot;&quot;  梯度下降法。給定起始點與目標函數的一階導函數，求在epochs次反覆運算中x的更新值</span>
+<span class="sd">        :param x_start: x的起始點    </span>
+<span class="sd">        :param df: 目標函數的一階導函數    </span>
+<span class="sd">        :param epochs: 反覆運算週期    </span>
+<span class="sd">        :param lr: 學習率    </span>
+<span class="sd">        :return: x在每次反覆運算後的位置（包括起始點），長度為epochs+1    </span>
+<span class="sd">     &quot;&quot;&quot;</span>    
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">epochs</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x_start</span>    
+    <span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="c1">#本程式無檢驗 MSE，而是根據預設epochs跑以下迴圈</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>         
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">df</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>        
+        <span class="c1"># v表示x要改變的幅度        </span>
+        <span class="n">v</span> <span class="o">=</span> <span class="o">-</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">lr</span>        
+        <span class="n">x</span> <span class="o">+=</span> <span class="n">v</span>        
+        <span class="n">xs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>    
+    <span class="k">return</span> <span class="n">xs</span>
+
+<span class="c1"># Main</span>
+<span class="c1"># 起始權重</span>
+<span class="n">x_start</span> <span class="o">=</span> <span class="mi">5</span> 
+<span class="c1"># 執行週期數: 所有資料做一次正向與反向傳導</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="c1"># 學習率   </span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="c1"># 梯度下降法 </span>
+<span class="c1"># *** Function 可以直接當參數傳遞 ***</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">GD</span><span class="p">(</span><span class="n">x_start</span><span class="p">,</span> <span class="n">dfunc</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">)</span> 
+<span class="nb">print</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 輸出：[-5.     -2.     -0.8    -0.32   -0.128  -0.0512]</span>
+
+<span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span>    
+<span class="c1">#plt.plot(line_x, line_y, c=&#39;b&#39;)    </span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">arange</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;lr=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lr</span><span class="p">))</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="p">)</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5.         4.27       3.743013   3.34270861 3.02749758 2.77252534
+ 2.56191843 2.38501565 2.23436666 2.10459483 1.99171525 1.89270736
+ 1.80523713 1.72747069 1.65794604 1.59548249 1.53911556 1.48804926
+ 1.44162054 1.39927245 1.36053355]
+</pre></div>
+</div>
+<img alt="_images/梯度下降法練習題_2_1.png" src="_images/梯度下降法練習題_2_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>二次方程式<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>目標函數: <span class="math notranslate nohighlight">\(-5^2+3x+6\)</span></p>
+<p>結果:學習率1r應盡可能小</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">fa</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="o">*</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="mi">6</span>
+ 
+<span class="c1"># 目標函數</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> 
+    <span class="n">f</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">fa</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># 目標函數一階導數:</span>
+<span class="k">def</span> <span class="nf">dfunc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">fprime</span> <span class="o">=</span> <span class="n">fa</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">fprime</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">GD</span><span class="p">(</span><span class="n">x_start</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">lr</span><span class="p">):</span>    
+    <span class="sd">&quot;&quot;&quot;  梯度下降法。給定起始點與目標函數的一階導函數，求在epochs次反覆運算中x的更新值</span>
+<span class="sd">        :param x_start: x的起始點    </span>
+<span class="sd">        :param df: 目標函數的一階導函數    </span>
+<span class="sd">        :param epochs: 反覆運算週期    </span>
+<span class="sd">        :param lr: 學習率    </span>
+<span class="sd">        :return: x在每次反覆運算後的位置（包括起始點），長度為epochs+1    </span>
+<span class="sd">     &quot;&quot;&quot;</span>    
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">epochs</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x_start</span>    
+    <span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>         
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">df</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>        
+        <span class="c1"># v表示x要改變的幅度        </span>
+        <span class="n">v</span> <span class="o">=</span> <span class="o">-</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">lr</span>        
+        <span class="n">x</span> <span class="o">+=</span> <span class="n">v</span>        
+        <span class="n">xs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>    
+    <span class="k">return</span> <span class="n">xs</span>
+
+<span class="c1"># Main</span>
+<span class="c1"># 起始權重</span>
+<span class="n">x_start</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span> 
+<span class="c1"># 執行週期數</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="c1"># 學習率   </span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.008</span>
+<span class="c1"># 梯度下降法 </span>
+<span class="c1"># *** Function 可以直接當參數傳遞 ***</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">GD</span><span class="p">(</span><span class="n">x_start</span><span class="p">,</span> <span class="n">dfunc</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">)</span> 
+<span class="nb">print</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 輸出：[-5.     -2.     -0.8    -0.32   -0.128  -0.0512]</span>
+
+<span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span>    
+<span class="c1">#plt.plot(line_x, line_y, c=&#39;b&#39;)    </span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">arange</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;lr=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lr</span><span class="p">))</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="p">)</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-5.00000000e+00 -5.42400000e+00 -5.88192000e+00 -6.37647360e+00
+ -6.91059149e+00 -7.48743881e+00 -8.11043391e+00 -8.78326862e+00
+ -9.50993011e+00 -1.02947245e+01 -1.11423025e+01 -1.20576867e+01
+ -1.30463016e+01 -1.41140057e+01 -1.52671262e+01 -1.65124963e+01
+ -1.78574960e+01 -1.93100957e+01 -2.08789033e+01 -2.25732156e+01
+ -2.44030729e+01 -2.63793187e+01 -2.85136642e+01 -3.08187573e+01
+ -3.33082579e+01 -3.59969185e+01 -3.89006720e+01 -4.20367258e+01
+ -4.54236638e+01 -4.90815570e+01 -5.30320815e+01 -5.72986480e+01
+ -6.19065399e+01 -6.68830631e+01 -7.22577081e+01 -7.80623248e+01
+ -8.43313107e+01 -9.11018156e+01 -9.84139608e+01 -1.06311078e+02
+ -1.14839964e+02 -1.24051161e+02 -1.33999254e+02 -1.44743194e+02
+ -1.56346650e+02 -1.68878382e+02 -1.82412652e+02 -1.97029664e+02
+ -2.12816038e+02 -2.29865321e+02 -2.48278546e+02 -2.68164830e+02
+ -2.89642016e+02 -3.12837378e+02 -3.37888368e+02 -3.64943437e+02
+ -3.94162912e+02 -4.25719945e+02 -4.59801541e+02 -4.96609664e+02
+ -5.36362437e+02 -5.79295432e+02 -6.25663067e+02 -6.75740112e+02
+ -7.29823321e+02 -7.88233187e+02 -8.51315842e+02 -9.19445109e+02
+ -9.93024718e+02 -1.07249070e+03 -1.15831395e+03 -1.25100307e+03
+ -1.35110731e+03 -1.45921990e+03 -1.57598149e+03 -1.70208401e+03
+ -1.83827473e+03 -1.98536071e+03 -2.14421356e+03 -2.31577465e+03
+ -2.50106062e+03 -2.70116947e+03 -2.91728703e+03 -3.15069399e+03
+ -3.40277351e+03 -3.67501939e+03 -3.96904494e+03 -4.28659254e+03
+ -4.62954394e+03 -4.99993146e+03 -5.39994997e+03 -5.83196997e+03
+ -6.29855157e+03 -6.80245969e+03 -7.34668047e+03 -7.93443891e+03
+ -8.56921802e+03 -9.25477946e+03 -9.99518582e+03 -1.07948247e+04
+ -1.16584347e+04]
+</pre></div>
+</div>
+<img alt="_images/梯度下降法練習題_4_1.png" src="_images/梯度下降法練習題_4_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="lab2">
+<h2>Lab2<a class="headerlink" href="#lab2" title="Permalink to this headline">¶</a></h2>
+<p>目標函數: <span class="math notranslate nohighlight">\(2x^4-3x^2+2x-20\)</span></p>
+<p>結果: 學習率1r應在0.007以下</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">fa</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">a</span> <span class="o">-</span><span class="mi">20</span>
+ 
+<span class="c1"># 目標函數</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> 
+    <span class="n">f</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">fa</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># 目標函數一階導數:</span>
+<span class="k">def</span> <span class="nf">dfunc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">fprime</span> <span class="o">=</span> <span class="n">fa</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">fprime</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">GD</span><span class="p">(</span><span class="n">x_start</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">lr</span><span class="p">):</span>    
+    <span class="sd">&quot;&quot;&quot;  梯度下降法。給定起始點與目標函數的一階導函數，求在epochs次反覆運算中x的更新值</span>
+<span class="sd">        :param x_start: x的起始點    </span>
+<span class="sd">        :param df: 目標函數的一階導函數    </span>
+<span class="sd">        :param epochs: 反覆運算週期    </span>
+<span class="sd">        :param lr: 學習率    </span>
+<span class="sd">        :return: x在每次反覆運算後的位置（包括起始點），長度為epochs+1    </span>
+<span class="sd">     &quot;&quot;&quot;</span>    
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">epochs</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x_start</span>    
+    <span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>         
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">df</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>        
+        <span class="c1"># v表示x要改變的幅度        </span>
+        <span class="n">v</span> <span class="o">=</span> <span class="o">-</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">lr</span>        
+        <span class="n">x</span> <span class="o">+=</span> <span class="n">v</span>        
+        <span class="n">xs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>    
+    <span class="k">return</span> <span class="n">xs</span>
+
+<span class="c1"># Main</span>
+<span class="c1"># 起始權重</span>
+<span class="n">x_start</span> <span class="o">=</span> <span class="mi">5</span> 
+<span class="c1"># 執行週期數</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="c1"># 學習率   </span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.002</span>
+<span class="c1"># 梯度下降法 </span>
+<span class="c1"># *** Function 可以直接當參數傳遞 ***</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">GD</span><span class="p">(</span><span class="n">x_start</span><span class="p">,</span> <span class="n">dfunc</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">)</span> 
+<span class="nb">print</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 輸出：[-5.     -2.     -0.8    -0.32   -0.128  -0.0512]</span>
+
+<span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span>    
+<span class="c1">#plt.plot(line_x, line_y, c=&#39;b&#39;)    </span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">arange</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;lr=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lr</span><span class="p">))</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="p">)</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5.         3.056      2.63202561 2.36787372 2.17986811 2.0362929
+ 1.92163296 1.82715716 1.74748352 1.67907271 1.61948103 1.56695571
+ 1.52020038 1.47823163 1.44028744 1.40576653 1.37418697 1.34515721
+ 1.31835522 1.29351339 1.27040712]
+</pre></div>
+</div>
+<img alt="_images/梯度下降法練習題_6_1.png" src="_images/梯度下降法練習題_6_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="lab3">
+<h2>Lab3<a class="headerlink" href="#lab3" title="Permalink to this headline">¶</a></h2>
+<p>目標函數: <span class="math notranslate nohighlight">\(sin(x)E^{(-0.1(x-0.6)^2)}\)</span></p>
+<p>結果: x_start需要在0~-3間才有辦法找到最小值，在其他地方會找到單位最大或最小值</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">fa</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">E</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mf">0.6</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+ 
+<span class="c1"># 目標函數</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> 
+    <span class="n">f</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">fa</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># 目標函數一階導數:</span>
+<span class="k">def</span> <span class="nf">dfunc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">fprime</span> <span class="o">=</span> <span class="n">fa</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">fprime</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">GD</span><span class="p">(</span><span class="n">x_start</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">lr</span><span class="p">):</span>    
+    <span class="sd">&quot;&quot;&quot;  梯度下降法。給定起始點與目標函數的一階導函數，求在epochs次反覆運算中x的更新值</span>
+<span class="sd">        :param x_start: x的起始點    </span>
+<span class="sd">        :param df: 目標函數的一階導函數    </span>
+<span class="sd">        :param epochs: 反覆運算週期    </span>
+<span class="sd">        :param lr: 學習率    </span>
+<span class="sd">        :return: x在每次反覆運算後的位置（包括起始點），長度為epochs+1    </span>
+<span class="sd">     &quot;&quot;&quot;</span>    
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">epochs</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x_start</span>    
+    <span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>         
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">df</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>        
+        <span class="c1"># v表示x要改變的幅度        </span>
+        <span class="n">v</span> <span class="o">=</span> <span class="o">-</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">lr</span>        
+        <span class="n">x</span> <span class="o">+=</span> <span class="n">v</span>        
+        <span class="n">xs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>    
+    <span class="k">return</span> <span class="n">xs</span>
+
+<span class="c1"># Main</span>
+<span class="c1"># 起始權重</span>
+<span class="n">x_start</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span> 
+<span class="c1"># 執行週期數</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="c1"># 學習率   </span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="c1"># 梯度下降法 </span>
+<span class="c1"># *** Function 可以直接當參數傳遞 ***</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">GD</span><span class="p">(</span><span class="n">x_start</span><span class="p">,</span> <span class="n">dfunc</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">)</span> 
+<span class="nb">print</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># 輸出：[-5.     -2.     -0.8    -0.32   -0.128  -0.0512]</span>
+
+<span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span>    
+<span class="c1">#plt.plot(line_x, line_y, c=&#39;b&#39;)    </span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">arange</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;lr=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lr</span><span class="p">))</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="p">)</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3.         -2.88052489 -2.74404846 -2.58965322 -2.41813948 -2.23329082
+ -2.04296352 -1.85884167 -1.69373142 -1.55713829 -1.45221605 -1.3762816
+ -1.32363329 -1.28816379 -1.26470577 -1.24937247 -1.23942375 -1.23299886
+ -1.22886193 -1.22620322 -1.22449659]
+</pre></div>
+</div>
+<img alt="_images/梯度下降法練習題_8_1.png" src="_images/梯度下降法練習題_8_1.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="使用矩陣解聯立方程式.html" title="previous page">使用矩陣解聯立方程式</a>
+    <a class='right-next' id="next-link" href="今彩539中獎預測.html" title="next page">今彩539 中獎預測</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Yi Huei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

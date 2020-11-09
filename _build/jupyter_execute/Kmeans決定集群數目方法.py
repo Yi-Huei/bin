@@ -88,8 +88,9 @@ plt.show()
 結論: 取3群，效益佳
 
 ## 方法二、輪廓圖分析、Silhouette
-參考影片:https://www.youtube.com/watch?v=5TPldC_dC0s
-官方文件:https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html
+[參考影片](https://www.youtube.com/watch?v=5TPldC_dC0s) 
+
+[官方文件](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html)
 
 輪廓圖分析(Silhouette Analysis):其目標是決定即群數目，計算輪廓係數，可檢驗樣本在集群中是否緊密在一起。  
 1. 對樣本點$x^{(i)}$，計算其"集群內聚性"$a^{(i)}$，即$a^{(i)}$對其他樣本之間之平均距離，$a^{(i)}$越小越好  

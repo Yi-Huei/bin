@@ -12,7 +12,7 @@
 4. 重複2. 3.動作直到集群不變
 
 ### 步驟一:產生亂數資料
-make_blobs參考網站:https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html
+[make_blobs參考網站](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html)
 
 import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()  # for plot styling
@@ -30,7 +30,7 @@ X.shape, y_true.shape
 300筆資料，2個變數
 
 ### 步驟二:使用Kmeans進行分類
-KMeans參考網站:https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html
+[KMeans參考網站](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
 
 非監督式學習一般不需要做資料切割，因為無標記(沒有y)，所以即使分出測試資料，也無法計算分數  
 

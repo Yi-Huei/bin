@@ -59,7 +59,7 @@ plt.tight_layout()
 plt.show()
 
 #### 三、使用DBSCAN進行分類
-參考網址:https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html  
+[參考網站](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html)  
 
 採用sklearn.cluster.DBSCAN，參數說明如下:  
 eps:設定半徑  
@@ -85,4 +85,4 @@ plt.tight_layout()
 #plt.savefig('images/11_16.png', dpi=300)
 plt.show()
 
-### 結論:利用DBSCAN可將此類型資料分的比較好。
+#### 結論:利用DBSCAN可將此類型資料分的比較好。
