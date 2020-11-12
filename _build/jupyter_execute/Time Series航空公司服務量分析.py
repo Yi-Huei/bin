@@ -124,12 +124,20 @@ fig2 = fb.plot_components(forecast)
 
 第一章圖: 區域效應
 
-第二張圖 : 年效應
+第二張圖 : 月效應
 
-由於本資料集數據最小單位為"月"，所以
+由於本資料集數據最小單位為"月"，所以只能呈現到月效應。若收集的數據時間單位越小，如日，則可以顯示出星期效應...
 
-# 互動式統計圖
+#### 5.4 互動式統計圖
+fbprophet也提供互動式圖表，然而網頁無法呈現互動是圖片，所以只顯示程式碼與圖片，而不執行。
+
+# 互動式統計圖1
 from fbprophet.plot import plot_plotly, plot_components_plotly
-plot_plotly(fb, forecast)
+#plot_plotly(fb, forecast)
 
-plot_components_plotly(fb, forecast)
+<img src="https://github.com/Yi-Huei/bin/blob/master/images/TimeSeries1.png?raw=true" style="zoom:70%" />
+
+# 互動式統計圖2
+#plot_components_plotly(fb, forecast)
+
+<img src="https://github.com/Yi-Huei/bin/blob/master/images/TimeSeriers2.png?raw=true" style="zoom:70%" />

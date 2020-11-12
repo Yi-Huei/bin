@@ -46,6 +46,8 @@ y.backward()
 print(x.grad)
 
 ## 二.利用tensorflow進行簡單迴歸
+需先安裝套件，詳細安裝方法可[參考網站](https://ithelp.ithome.com.tw/articles/10233272)  
+
 屬於神經網路中的神經層程式碼  
 若要改變神經層可以套用此公式  
 
@@ -151,15 +153,15 @@ model.evaluate(x_test, y_test)
 
 **準確度: 97.73%**
 
-註解1 : Deep learning模型說明:  
+**註解1 : Deep learning模型說明:**  
 ![Alt text](https://github.com/Yi-Huei/bin/blob/master/images/tl_sample.png?raw=true)
 
-註解2: 梯度下降法求最佳解
-在設定input、output、隱藏層後，進行優化器、損失函數與準確度設定，如下圖  
+**註解2: 梯度下降法求最佳解**  
+在設定input、output、隱藏層後，進行優化器、損失函數與準確度設定，正向傳導與反向傳導一次為一次epoch，如下圖  
 ![](https://github.com/Yi-Huei/bin/blob/master/images/tl_sample3.png?raw=true)
 
 
-Tensorflow優化器  
+**註解3:Tensorflow優化器**  
 [參考網站址](https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/SGD)
 ![](https://github.com/Yi-Huei/bin/blob/master/images/tl_sample4.png?raw=true)
 
@@ -167,6 +169,7 @@ tensorflow損失率
 [參考網站]( https://www.tensorflow.org/api_docs/python/tf/keras/losses)
 
 ### 程式說明
+[參考網址](https://ithelp.ithome.com.tw/articles/10233758)  
 神經網路演算法依舊採用機器學習8大步驟
 1. 收集資料(Dataset)
 2. 清理資料(Data cleaning)  
