@@ -36,8 +36,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="非監督學習演算法" href="非監督學習演算法.html" />
-    <link rel="prev" title="今彩539 中獎預測" href="今彩539中獎預測.html" />
+    <link rel="next" title="利用KNN演算法分類酒類" href="利用KNN演算法分類酒類.html" />
+    <link rel="prev" title="回歸" href="回歸.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -90,7 +90,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="使用矩陣解聯立方程式.html">
-   使用矩陣解聯立方程式
+   使用Numpy矩陣解聯立方程式
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="利用scipy積分.html">
+   利用scipy進行積分
   </a>
  </li>
  <li class="toctree-l1">
@@ -103,9 +108,39 @@
    今彩539 中獎預測
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="回歸.html">
+   回歸
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    線性回歸預測波斯頓房價
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="利用KNN演算法分類酒類.html">
+   利用KNN演算法分類酒類
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Time Series航空公司服務量分析.html">
+   Time Series航空公司服務量分析
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="深度學習與手寫數字辨識.html">
+   深度學習(Deep Learning)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="EDA-美國計程車小費.html">
+   EDA-美國計程車小費
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="EDA-鐵達尼號.html">
+   EDA-鐵達尼號
   </a>
  </li>
  <li class="toctree-l1">
@@ -242,7 +277,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id8">
-   程式碼
+   全部程式碼
   </a>
  </li>
 </ul>
@@ -272,7 +307,8 @@
 <p><img alt="如圖:" src="https://github.com/Yi-Huei/bin/blob/master/images/ML_process.png?raw=true" /><br />
 圖片來源:https://yourfreetemplates.com/free-machine-learning-diagram/</p>
 <p>本篇將透過波斯頓房價資料集進行機器學習_監督式學習，而本資料集為Scikit learn所收集之。  <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html#sklearn.datasets.load_boston">參考網站</a></p>
-<p><a class="reference external" href="https://scikit-learn.org/stable/datasets/index.html">Scikit learn其他資料集</a></p>
+<p><a class="reference external" href="https://scikit-learn.org/stable/datasets/index.html">Scikit learn其他資料集</a><br />
+<a class="reference external" href="https://github.com/Yi-Huei/bin/blob/master/images/Scikit_Learn_Cheat_Sheet.pdf">Scikit learn程式碼小抄</a></p>
 <div class="section" id="id2">
 <h2>步驟一: 載入資料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>由於該資料集已透過Scikit Learn收集並清理，所以跳過第一步與第二步直接進行載入資料。</p>
@@ -612,9 +648,9 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.44325292, -0.50069537, -0.9819652 , -0.28828791, -0.97410716,
-       -0.40003485, -0.71771697,  1.98525198, -0.76272677, -0.36502562,
-        0.18532535,  0.32533435, -0.29225545])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.94579989, -0.49646655,  1.04381116, -0.26761547,  0.52538759,
+       -0.89627038,  0.66249602, -0.87095628,  1.6549621 ,  1.52708331,
+        0.80698603, -0.70711822,  0.1887772 ])
 </pre></div>
 </div>
 </div>
@@ -654,9 +690,9 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.70195335,  1.25332393,  0.0933845 ,  0.84521626, -2.06943217,
-        2.36674247,  0.39483133, -3.05148657,  2.6412023 , -2.1215265 ,
-       -2.13543496,  0.96667552, -4.26289182])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.95721031,  1.16379171, -0.03731645,  0.78754539, -2.20034746,
+        2.20093082, -0.11847286, -3.39314124,  2.73007966, -2.0728463 ,
+       -1.68432872,  0.69408151, -4.09815343])
 </pre></div>
 </div>
 </div>
@@ -669,7 +705,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22.734900990099018
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22.373514851485172
 </pre></div>
 </div>
 </div>
@@ -683,27 +719,27 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([16.73535844, 13.35131583, 33.81343572, 19.01283458,  7.6881888 ,
-       12.95292327, 22.91989793, 33.02834692, 20.77686757, 23.71186536,
-       25.75324787, 23.54060354, 32.60199259, 29.50916785, 21.71074893,
-       26.73921957, 34.7785217 , 18.84080233, 26.79901   , 28.90976809,
-        5.96180825, 18.86266551, 24.67976802, 30.78860219, 23.45275874,
-       26.58078929, 18.75464728, 25.09208322, 25.22506736, 14.04493588,
-       22.07629585, 15.94206003, 24.1475928 , 27.43695147, 19.43057252,
-       19.90017036, 28.41905569, 25.06703573, 31.96285583, 15.67593437,
-       18.51947218, 15.51547675, 24.32351045, 12.18952919, 29.23190159,
-       21.45258683, 24.1849763 , 38.21148435, 23.72136631, 27.35125682,
-       19.02360907, 18.66760868, 24.59908304,  9.55628503, 27.80871231,
-       13.83374535,  0.74344617, 22.78626904, 22.73849408, 23.04196331,
-        6.38672211, 30.14834607,  7.40952164, 27.16265518, 28.08077322,
-       28.61752959, 20.73193188, 12.32054012, 19.76129853, 27.62947438,
-       11.44085434, 30.67864127, 19.68211347, 28.50926593, 17.06829089,
-       21.29799726, 13.13391338, 25.11357904, 31.73090327,  2.94140311,
-       31.17613529, 18.47767194, 22.47823254, 14.03763555,  2.96775272,
-       18.82814278, 36.94900199, 25.11202973, 31.81607094, 28.00834523,
-       27.48226813, 28.02445138, 10.94865467,  8.37638418, 27.25560128,
-       21.18909435, 24.43099658, 19.87308645, 37.48038904, 19.59590234,
-       20.34525728, 20.95721554])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([19.11792071, 16.7434682 , 36.86357477, 23.65662538, 13.5134384 ,
+       24.48331962, 10.22534733, 23.68042077, 15.85926091, 18.04793645,
+       24.61454235, 19.15947861, 38.96812043, 34.08631646, 32.0152361 ,
+       38.91410708, 22.75995083,  1.03419464, 23.62201651, 20.13834767,
+       33.20445111, 22.92670495, 11.80083839, 18.83910887, 20.85261223,
+       28.77364982, 16.84301986, 20.72859476, 25.53480212,  8.04585949,
+       25.32045699, 18.37242198, 22.87416358, 20.56634958, 20.02509701,
+       25.68460008, 13.94191155, 19.95284488, 23.56704403, 40.25297215,
+       37.16274297, 20.72121969, 22.14252199, 41.30268008, 27.22430574,
+       14.96437041, 15.7573992 , 19.90648718,  9.28516646, 20.99772625,
+       24.00702647, 39.93832022,  8.00324229, 25.65207884, 22.45069663,
+       35.45646486, 25.50567901, 22.91652903, 29.69075364, 32.86578403,
+       22.22592428, 18.36120122, 32.1531993 , 33.87472191, 26.77522206,
+       25.39500041, 20.37350566, 28.98762191, 23.83295267, 19.58143024,
+       32.87605243, 36.11601036, 21.53962675, 27.68992113, 29.59462871,
+       17.38176688, 23.38203296, 27.12224335, 22.37783775, 19.82758482,
+       22.87302065, 19.17835689, 18.42277512, 15.88613566, 30.63500219,
+       25.29783676, 17.80726518, 10.51844153, 31.97738334,  7.24706036,
+       12.97778999, 17.96280556, 13.25626517, 24.16839196, 16.21724635,
+       10.63446174, 27.53439976, 28.39731426, 30.04853129, 25.64653783,
+       13.52805157, 26.80511402])
 </pre></div>
 </div>
 </div>
@@ -722,7 +758,7 @@ R^2 = \frac{\sum_i^n (\hat{y_i} - \bar{y_i})}{\sum_i^n ({y_i} - \bar{y_i})}
 <img src="https://github.com/Yi-Huei/bin/blob/master/images/MSE.png?raw=true" width="500px" /></p>
 <p>從X軸向畫上一條直線，可取得y的預測值，y真實數據兩點，取兩者間差值，將所有點以如此方法處理便是MSE，公式如下</p>
 <p><span class="math notranslate nohighlight">\(
-MSE = \sum_i^n (\hat{y_i} - y_i)
+MSE =\frac1n \sum_i^n (\hat{y_i} - y_i)
 \)</span></p>
 <p><strong>MSE值越小，表預測值與真實值差距越小。</strong></p>
 <p>兩者程式如下:</p>
@@ -737,8 +773,8 @@ MSE = \sum_i^n (\hat{y_i} - y_i)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 = 0.68
-MSE = 20.16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 = 0.79
+MSE = 20.01
 </pre></div>
 </div>
 </div>
@@ -773,15 +809,15 @@ MSE = 20.16
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 = 0.74
-MSE = 16.30
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 = 0.62
+MSE = 35.39
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="id8">
-<h2>程式碼<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<h2>全部程式碼<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <p>以下為本範例所有程式碼，因為資料經過重新分配，所以結果會有所不同</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -827,10 +863,10 @@ MSE = 16.30
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression R2 = 0.78
-LinearRegression MSE = 23.12
-SVM R2 = 0.69
-SVM MSE = 32.50
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression R2 = 0.72
+LinearRegression MSE = 26.47
+SVM R2 = 0.62
+SVM MSE = 36.11
 </pre></div>
 </div>
 </div>
@@ -866,8 +902,8 @@ SVM MSE = 32.50
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="今彩539中獎預測.html" title="previous page">今彩539 中獎預測</a>
-    <a class='right-next' id="next-link" href="非監督學習演算法.html" title="next page">非監督學習演算法</a>
+    <a class='left-prev' id="prev-link" href="回歸.html" title="previous page">回歸</a>
+    <a class='right-next' id="next-link" href="利用KNN演算法分類酒類.html" title="next page">利用KNN演算法分類酒類</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

@@ -1,0 +1,784 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>回歸 &#8212; Python紀事</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="線性回歸預測波斯頓房價" href="波斯頓房價預測.html" />
+    <link rel="prev" title="今彩539 中獎預測" href="今彩539中獎預測.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/myName.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Python紀事</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   About Me
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="聯立方程式Sympy與Numpy.html">
+   Sympy 與 Numpy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="使用sympy解聯立方程式，並建立視窗供使用者輸入方程式.html">
+   使用sympy解聯立方程式，並建立視窗供使用者輸入方程式
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="使用矩陣解聯立方程式.html">
+   使用Numpy矩陣解聯立方程式
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="利用scipy積分.html">
+   利用scipy進行積分
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="梯度下降法練習題.html">
+   梯度下降法練習題
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="今彩539中獎預測.html">
+   今彩539 中獎預測
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   回歸
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="波斯頓房價預測.html">
+   線性回歸預測波斯頓房價
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="利用KNN演算法分類酒類.html">
+   利用KNN演算法分類酒類
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Time Series航空公司服務量分析.html">
+   Time Series航空公司服務量分析
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="深度學習與手寫數字辨識.html">
+   深度學習(Deep Learning)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="EDA-美國計程車小費.html">
+   EDA-美國計程車小費
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="EDA-鐵達尼號.html">
+   EDA-鐵達尼號
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="非監督學習演算法.html">
+   非監督學習演算法
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/回歸.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/回歸.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/回歸.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   0.載入資料
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numpy-polyfit">
+   1. Numpy polyfit 一次回歸
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.1計算2030年、2050年、2200年人口數
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     1.2作圖
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   2. Numpy polyfit 二次回歸
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scikit-learn">
+   3. Scikit Learn 一次回歸
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   4. Scikit Learn 二次回歸
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>回歸<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>回歸模型用於X與y皆為連續型變數。</p>
+<p>本篇利用numpy與Scikit Learn分別進行1次回歸、2次回歸之說明</p>
+<p>透過每年(year)全世界人口(pop)統計資料，以year為X，pop為y，利用numpy與Scikit Learn取得兩者間之關係，並嘗試預測2020、2030、2200年之人口數</p>
+<div class="section" id="id2">
+<h2>0.載入資料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>使用套件:</p>
+<p>numpy</p>
+<p>pandas:python表格套件，利用DataFrame可將陣列資料轉成表格資料，利於觀看數據</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">year</span><span class="o">=</span><span class="p">[</span><span class="mi">1950</span><span class="p">,</span> <span class="mi">1951</span><span class="p">,</span> <span class="mi">1952</span><span class="p">,</span> <span class="mi">1953</span><span class="p">,</span> <span class="mi">1954</span><span class="p">,</span> <span class="mi">1955</span><span class="p">,</span> <span class="mi">1956</span><span class="p">,</span> <span class="mi">1957</span><span class="p">,</span> <span class="mi">1958</span><span class="p">,</span> <span class="mi">1959</span><span class="p">,</span> <span class="mi">1960</span><span class="p">,</span> <span class="mi">1961</span><span class="p">,</span> <span class="mi">1962</span><span class="p">,</span> <span class="mi">1963</span><span class="p">,</span> <span class="mi">1964</span><span class="p">,</span> <span class="mi">1965</span><span class="p">,</span> <span class="mi">1966</span><span class="p">,</span> <span class="mi">1967</span><span class="p">,</span> <span class="mi">1968</span><span class="p">,</span> <span class="mi">1969</span><span class="p">,</span> <span class="mi">1970</span><span class="p">,</span> <span class="mi">1971</span><span class="p">,</span> <span class="mi">1972</span><span class="p">,</span> <span class="mi">1973</span><span class="p">,</span> <span class="mi">1974</span><span class="p">,</span> <span class="mi">1975</span><span class="p">,</span> <span class="mi">1976</span><span class="p">,</span> <span class="mi">1977</span><span class="p">,</span> <span class="mi">1978</span><span class="p">,</span> <span class="mi">1979</span><span class="p">,</span> <span class="mi">1980</span><span class="p">,</span> <span class="mi">1981</span><span class="p">,</span> <span class="mi">1982</span><span class="p">,</span> <span class="mi">1983</span><span class="p">,</span> <span class="mi">1984</span><span class="p">,</span> <span class="mi">1985</span><span class="p">,</span> <span class="mi">1986</span><span class="p">,</span> <span class="mi">1987</span><span class="p">,</span> <span class="mi">1988</span><span class="p">,</span> <span class="mi">1989</span><span class="p">,</span> <span class="mi">1990</span><span class="p">,</span> <span class="mi">1991</span><span class="p">,</span> <span class="mi">1992</span><span class="p">,</span> <span class="mi">1993</span><span class="p">,</span> <span class="mi">1994</span><span class="p">,</span> <span class="mi">1995</span><span class="p">,</span> <span class="mi">1996</span><span class="p">,</span> <span class="mi">1997</span><span class="p">,</span> <span class="mi">1998</span><span class="p">,</span> <span class="mi">1999</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">2001</span><span class="p">,</span> <span class="mi">2002</span><span class="p">,</span> <span class="mi">2003</span><span class="p">,</span> <span class="mi">2004</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="mi">2006</span><span class="p">,</span> <span class="mi">2007</span><span class="p">,</span> <span class="mi">2008</span><span class="p">,</span> <span class="mi">2009</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2011</span><span class="p">,</span> <span class="mi">2012</span><span class="p">,</span> <span class="mi">2013</span><span class="p">,</span> <span class="mi">2014</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">2016</span><span class="p">,</span> <span class="mi">2017</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">2021</span><span class="p">,</span> <span class="mi">2022</span><span class="p">,</span> <span class="mi">2023</span><span class="p">,</span> <span class="mi">2024</span><span class="p">,</span> <span class="mi">2025</span><span class="p">,</span> <span class="mi">2026</span><span class="p">,</span> <span class="mi">2027</span><span class="p">,</span> <span class="mi">2028</span><span class="p">,</span> <span class="mi">2029</span><span class="p">,</span> <span class="mi">2030</span><span class="p">,</span> <span class="mi">2031</span><span class="p">,</span> <span class="mi">2032</span><span class="p">,</span> <span class="mi">2033</span><span class="p">,</span> <span class="mi">2034</span><span class="p">,</span> <span class="mi">2035</span><span class="p">,</span> <span class="mi">2036</span><span class="p">,</span> <span class="mi">2037</span><span class="p">,</span> <span class="mi">2038</span><span class="p">,</span> <span class="mi">2039</span><span class="p">,</span> <span class="mi">2040</span><span class="p">,</span> <span class="mi">2041</span><span class="p">,</span> <span class="mi">2042</span><span class="p">,</span> <span class="mi">2043</span><span class="p">,</span> <span class="mi">2044</span><span class="p">,</span> <span class="mi">2045</span><span class="p">,</span> <span class="mi">2046</span><span class="p">,</span> <span class="mi">2047</span><span class="p">,</span> <span class="mi">2048</span><span class="p">,</span> <span class="mi">2049</span><span class="p">,</span> <span class="mi">2050</span><span class="p">,</span> <span class="mi">2051</span><span class="p">,</span> <span class="mi">2052</span><span class="p">,</span> <span class="mi">2053</span><span class="p">,</span> <span class="mi">2054</span><span class="p">,</span> <span class="mi">2055</span><span class="p">,</span> <span class="mi">2056</span><span class="p">,</span> <span class="mi">2057</span><span class="p">,</span> <span class="mi">2058</span><span class="p">,</span> <span class="mi">2059</span><span class="p">,</span> <span class="mi">2060</span><span class="p">,</span> <span class="mi">2061</span><span class="p">,</span> <span class="mi">2062</span><span class="p">,</span> <span class="mi">2063</span><span class="p">,</span> <span class="mi">2064</span><span class="p">,</span> <span class="mi">2065</span><span class="p">,</span> <span class="mi">2066</span><span class="p">,</span> <span class="mi">2067</span><span class="p">,</span> <span class="mi">2068</span><span class="p">,</span> <span class="mi">2069</span><span class="p">,</span> <span class="mi">2070</span><span class="p">,</span> <span class="mi">2071</span><span class="p">,</span> <span class="mi">2072</span><span class="p">,</span> <span class="mi">2073</span><span class="p">,</span> <span class="mi">2074</span><span class="p">,</span> <span class="mi">2075</span><span class="p">,</span> <span class="mi">2076</span><span class="p">,</span> <span class="mi">2077</span><span class="p">,</span> <span class="mi">2078</span><span class="p">,</span> <span class="mi">2079</span><span class="p">,</span> <span class="mi">2080</span><span class="p">,</span> <span class="mi">2081</span><span class="p">,</span> <span class="mi">2082</span><span class="p">,</span> <span class="mi">2083</span><span class="p">,</span> <span class="mi">2084</span><span class="p">,</span> <span class="mi">2085</span><span class="p">,</span> <span class="mi">2086</span><span class="p">,</span> <span class="mi">2087</span><span class="p">,</span> <span class="mi">2088</span><span class="p">,</span> <span class="mi">2089</span><span class="p">,</span> <span class="mi">2090</span><span class="p">,</span> <span class="mi">2091</span><span class="p">,</span> <span class="mi">2092</span><span class="p">,</span> <span class="mi">2093</span><span class="p">,</span> <span class="mi">2094</span><span class="p">,</span> <span class="mi">2095</span><span class="p">,</span> <span class="mi">2096</span><span class="p">,</span> <span class="mi">2097</span><span class="p">,</span> <span class="mi">2098</span><span class="p">,</span> <span class="mi">2099</span><span class="p">,</span> <span class="mi">2100</span><span class="p">]</span>
+<span class="n">pop</span><span class="o">=</span><span class="p">[</span><span class="mf">2.53</span><span class="p">,</span> <span class="mf">2.57</span><span class="p">,</span> <span class="mf">2.62</span><span class="p">,</span> <span class="mf">2.67</span><span class="p">,</span> <span class="mf">2.71</span><span class="p">,</span> <span class="mf">2.76</span><span class="p">,</span> <span class="mf">2.81</span><span class="p">,</span> <span class="mf">2.86</span><span class="p">,</span> <span class="mf">2.92</span><span class="p">,</span> <span class="mf">2.97</span><span class="p">,</span> <span class="mf">3.03</span><span class="p">,</span> <span class="mf">3.08</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">3.26</span><span class="p">,</span> <span class="mf">3.33</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">3.47</span><span class="p">,</span> <span class="mf">3.54</span><span class="p">,</span> <span class="mf">3.62</span><span class="p">,</span> <span class="mf">3.69</span><span class="p">,</span> <span class="mf">3.77</span><span class="p">,</span> <span class="mf">3.84</span><span class="p">,</span> <span class="mf">3.92</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.07</span><span class="p">,</span> <span class="mf">4.15</span><span class="p">,</span> <span class="mf">4.22</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="mf">4.37</span><span class="p">,</span> <span class="mf">4.45</span><span class="p">,</span> <span class="mf">4.53</span><span class="p">,</span> <span class="mf">4.61</span><span class="p">,</span> <span class="mf">4.69</span><span class="p">,</span> <span class="mf">4.78</span><span class="p">,</span> <span class="mf">4.86</span><span class="p">,</span> <span class="mf">4.95</span><span class="p">,</span> <span class="mf">5.05</span><span class="p">,</span> <span class="mf">5.14</span><span class="p">,</span> <span class="mf">5.23</span><span class="p">,</span> <span class="mf">5.32</span><span class="p">,</span> <span class="mf">5.41</span><span class="p">,</span> <span class="mf">5.49</span><span class="p">,</span> <span class="mf">5.58</span><span class="p">,</span> <span class="mf">5.66</span><span class="p">,</span> <span class="mf">5.74</span><span class="p">,</span> <span class="mf">5.82</span><span class="p">,</span> <span class="mf">5.9</span><span class="p">,</span> <span class="mf">5.98</span><span class="p">,</span> <span class="mf">6.05</span><span class="p">,</span> <span class="mf">6.13</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">,</span> <span class="mf">6.28</span><span class="p">,</span> <span class="mf">6.36</span><span class="p">,</span> <span class="mf">6.44</span><span class="p">,</span> <span class="mf">6.51</span><span class="p">,</span> <span class="mf">6.59</span><span class="p">,</span> <span class="mf">6.67</span><span class="p">,</span> <span class="mf">6.75</span><span class="p">,</span> <span class="mf">6.83</span><span class="p">,</span> <span class="mf">6.92</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">7.08</span><span class="p">,</span> <span class="mf">7.16</span><span class="p">,</span> <span class="mf">7.24</span><span class="p">,</span> <span class="mf">7.32</span><span class="p">,</span> <span class="mf">7.4</span><span class="p">,</span> <span class="mf">7.48</span><span class="p">,</span> <span class="mf">7.56</span><span class="p">,</span> <span class="mf">7.64</span><span class="p">,</span> <span class="mf">7.72</span><span class="p">,</span> <span class="mf">7.79</span><span class="p">,</span> <span class="mf">7.87</span><span class="p">,</span> <span class="mf">7.94</span><span class="p">,</span> <span class="mf">8.01</span><span class="p">,</span> <span class="mf">8.08</span><span class="p">,</span> <span class="mf">8.15</span><span class="p">,</span> <span class="mf">8.22</span><span class="p">,</span> <span class="mf">8.29</span><span class="p">,</span> <span class="mf">8.36</span><span class="p">,</span> <span class="mf">8.42</span><span class="p">,</span> <span class="mf">8.49</span><span class="p">,</span> <span class="mf">8.56</span><span class="p">,</span> <span class="mf">8.62</span><span class="p">,</span> <span class="mf">8.68</span><span class="p">,</span> <span class="mf">8.74</span><span class="p">,</span> <span class="mf">8.8</span><span class="p">,</span> <span class="mf">8.86</span><span class="p">,</span> <span class="mf">8.92</span><span class="p">,</span> <span class="mf">8.98</span><span class="p">,</span> <span class="mf">9.04</span><span class="p">,</span> <span class="mf">9.09</span><span class="p">,</span> <span class="mf">9.15</span><span class="p">,</span> <span class="mf">9.2</span><span class="p">,</span> <span class="mf">9.26</span><span class="p">,</span> <span class="mf">9.31</span><span class="p">,</span> <span class="mf">9.36</span><span class="p">,</span> <span class="mf">9.41</span><span class="p">,</span> <span class="mf">9.46</span><span class="p">,</span> <span class="mf">9.5</span><span class="p">,</span> <span class="mf">9.55</span><span class="p">,</span> <span class="mf">9.6</span><span class="p">,</span> <span class="mf">9.64</span><span class="p">,</span> <span class="mf">9.68</span><span class="p">,</span> <span class="mf">9.73</span><span class="p">,</span> <span class="mf">9.77</span><span class="p">,</span> <span class="mf">9.81</span><span class="p">,</span> <span class="mf">9.85</span><span class="p">,</span> <span class="mf">9.88</span><span class="p">,</span> <span class="mf">9.92</span><span class="p">,</span> <span class="mf">9.96</span><span class="p">,</span> <span class="mf">9.99</span><span class="p">,</span> <span class="mf">10.03</span><span class="p">,</span> <span class="mf">10.06</span><span class="p">,</span> <span class="mf">10.09</span><span class="p">,</span> <span class="mf">10.13</span><span class="p">,</span> <span class="mf">10.16</span><span class="p">,</span> <span class="mf">10.19</span><span class="p">,</span> <span class="mf">10.22</span><span class="p">,</span> <span class="mf">10.25</span><span class="p">,</span> <span class="mf">10.28</span><span class="p">,</span> <span class="mf">10.31</span><span class="p">,</span> <span class="mf">10.33</span><span class="p">,</span> <span class="mf">10.36</span><span class="p">,</span> <span class="mf">10.38</span><span class="p">,</span> <span class="mf">10.41</span><span class="p">,</span> <span class="mf">10.43</span><span class="p">,</span> <span class="mf">10.46</span><span class="p">,</span> <span class="mf">10.48</span><span class="p">,</span> <span class="mf">10.5</span><span class="p">,</span> <span class="mf">10.52</span><span class="p">,</span> <span class="mf">10.55</span><span class="p">,</span> <span class="mf">10.57</span><span class="p">,</span> <span class="mf">10.59</span><span class="p">,</span> <span class="mf">10.61</span><span class="p">,</span> <span class="mf">10.63</span><span class="p">,</span> <span class="mf">10.65</span><span class="p">,</span> <span class="mf">10.66</span><span class="p">,</span> <span class="mf">10.68</span><span class="p">,</span> <span class="mf">10.7</span><span class="p">,</span> <span class="mf">10.72</span><span class="p">,</span> <span class="mf">10.73</span><span class="p">,</span> <span class="mf">10.75</span><span class="p">,</span> <span class="mf">10.77</span><span class="p">,</span> <span class="mf">10.78</span><span class="p">,</span> <span class="mf">10.79</span><span class="p">,</span> <span class="mf">10.81</span><span class="p">,</span> <span class="mf">10.82</span><span class="p">,</span> <span class="mf">10.83</span><span class="p">,</span> <span class="mf">10.84</span><span class="p">,</span> <span class="mf">10.85</span><span class="p">]</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;year&#39;</span><span class="p">:</span><span class="n">year</span><span class="p">,</span> <span class="s1">&#39;pop&#39;</span><span class="p">:</span><span class="n">pop</span><span class="p">})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1">#取前10筆資料</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>pop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1950</td>
+      <td>2.53</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1951</td>
+      <td>2.57</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1952</td>
+      <td>2.62</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1953</td>
+      <td>2.67</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1954</td>
+      <td>2.71</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1955</td>
+      <td>2.76</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1956</td>
+      <td>2.81</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1957</td>
+      <td>2.86</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1958</td>
+      <td>2.92</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1959</td>
+      <td>2.97</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>pop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>141</th>
+      <td>2091</td>
+      <td>10.73</td>
+    </tr>
+    <tr>
+      <th>142</th>
+      <td>2092</td>
+      <td>10.75</td>
+    </tr>
+    <tr>
+      <th>143</th>
+      <td>2093</td>
+      <td>10.77</td>
+    </tr>
+    <tr>
+      <th>144</th>
+      <td>2094</td>
+      <td>10.78</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>2095</td>
+      <td>10.79</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>2096</td>
+      <td>10.81</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>2097</td>
+      <td>10.82</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>2098</td>
+      <td>10.83</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>2099</td>
+      <td>10.84</td>
+    </tr>
+    <tr>
+      <th>150</th>
+      <td>2100</td>
+      <td>10.85</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="numpy-polyfit">
+<h2>1. Numpy polyfit 一次回歸<a class="headerlink" href="#numpy-polyfit" title="Permalink to this headline">¶</a></h2>
+<p>利用Numpy的polyfit取得回歸公式</p>
+<p>參數為x , y , deg=輸入幾次方</p>
+<p>運算後回傳x係數項、截距</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lr</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;y = </span><span class="si">{</span><span class="n">lr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">x + </span><span class="si">{</span><span class="n">lr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1">#線性回歸</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 6.11593587e-02 -1.16356311e+02]
+y = 0.06x + -116.36
+</pre></div>
+</div>
+</div>
+</div>
+<p>lr[0]為x係數<br />
+lr[1]為截距</p>
+<div class="section" id="id3">
+<h3>1.1計算2030年、2050年、2200年人口數<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">polulation2030</span> <span class="o">=</span> <span class="n">lr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">2030</span> <span class="o">+</span> <span class="n">lr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;2030年人口數 = </span><span class="si">{</span><span class="n">polulation2030</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">polulation2050</span><span class="o">=</span> <span class="n">lr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">2050</span> <span class="o">+</span> <span class="n">lr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;2050年人口數 = </span><span class="si">{</span><span class="n">polulation2050</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">polulation2200</span><span class="o">=</span> <span class="n">lr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">2200</span> <span class="o">+</span> <span class="n">lr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;2200年人口數 = </span><span class="si">{</span><span class="n">polulation2200</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2030年人口數 = 7.80
+2050年人口數 = 9.02
+2200年人口數 = 18.19
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>1.2作圖<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>套件為matplotlib.pyplot</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Poplution(billion)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">lr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="n">lr</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span> <span class="c1">#參數為x(year)、y(由方程式計算之人口數)、color=顏色</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">pop</span><span class="p">)</span> <span class="c1">#參數為x(year)、y(實際人口數)、color=顏色</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x12f53863640&gt;
+</pre></div>
+</div>
+<img alt="_images/回歸_11_1.png" src="_images/回歸_11_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>2. Numpy polyfit 二次回歸<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>將polyfit之deg參數改為2，就可以進行2次回歸</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lr</span><span class="p">)</span>  
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;y = </span><span class="si">{</span><span class="n">lr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">x^2 + </span><span class="si">{</span><span class="n">lr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">x + </span><span class="si">{</span><span class="n">lr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2.66884560e-04  1.14204183e+00 -1.21024273e+03]
+y = -0.00x^2 + 1.14x + -1210.24
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Poplution(billion)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">lr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">lr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="n">lr</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">pop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x12f538da520&gt;
+</pre></div>
+</div>
+<img alt="_images/回歸_14_1.png" src="_images/回歸_14_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="scikit-learn">
+<h2>3. Scikit Learn 一次回歸<a class="headerlink" href="#scikit-learn" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">參考網站</a></p>
+<p>Scikit Learn監督式學習之套件，本次利用其LinearRegression(線性回歸)，取得x與y之間關係</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Scikit Learn 回歸只能導入2維欄位，所以1維欄位需改成2維</strong><br />
+<strong>使用套件: numpy的reshape</strong><br />
+程式碼如下:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span> <span class="n">pop</span><span class="p">)</span>  <span class="c1">#將x, y 參數帶入</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression()
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#計算x係數</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.06115936])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#計算截距</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">intercept_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-116.3563105611711
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>4. Scikit Learn 二次回歸<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>需使用sklearn.preprocessing.PolynimialFeatures套件，將x的次方數轉成2</p>
+<p>若x變數有2個以上，其結果方程式為<br />
+<span class="math notranslate nohighlight">\(y = w_0 + w_1x_1 + w_2x_2 + w_3x_1^2 + w_4x_1x_2 + w_5x_2^2\)</span></p>
+<p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html">參考資料</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#設定次方為 2</span>
+<span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#將year維度提升維2維</span>
+<span class="n">new_year</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">new_year</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(151, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#預設產生截距項，一般會取消</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">new_year</span><span class="p">,</span> <span class="n">pop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression(fit_intercept=False)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 列印結果</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">intercept_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([-1.21024273e+03,  1.14204183e+00, -2.66884560e-04]), 0.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;y = </span><span class="si">{</span><span class="n">lr</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">x^2 + </span><span class="si">{</span><span class="n">lr</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">x + </span><span class="si">{</span><span class="n">lr</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y = -0.00x^2 + 1.14x + -1210.24
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 繪圖</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Poplution(billion)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">new_year</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">pop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x12f65f4e820&gt;
+</pre></div>
+</div>
+<img alt="_images/回歸_28_1.png" src="_images/回歸_28_1.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="今彩539中獎預測.html" title="previous page">今彩539 中獎預測</a>
+    <a class='right-next' id="next-link" href="波斯頓房價預測.html" title="next page">線性回歸預測波斯頓房價</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Yi Huei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
