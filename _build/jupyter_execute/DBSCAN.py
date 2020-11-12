@@ -9,10 +9,10 @@
 參考圖片
 ![Image of Yaktocat](https://github.com/Yi-Huei/bin/blob/master/images/DBSCAN_image.png?raw=true)
 
-### 題目:
+## 題目:
 建立上下弦月資料後，分別使用kmeans、hierarchical、DBSCAN進行分類，並檢驗其效果
 
-#### 步驟一: 建立亂數資料集
+## 步驟一: 建立亂數資料集
 
 from sklearn.datasets import make_moons
 import matplotlib.pyplot as plt
@@ -24,7 +24,7 @@ plt.tight_layout()
 #plt.savefig('images/11_14.png', dpi=300)
 plt.show()
 
-#### 步驟二: 使用kmeans與hierarchical進行分類
+## 步驟二: 使用kmeans與hierarchical進行分類
 
 from sklearn.cluster import AgglomerativeClustering
 from sklearn.cluster import KMeans
@@ -58,7 +58,7 @@ plt.tight_layout()
 # plt.savefig('images/11_15.png', dpi=300)
 plt.show()
 
-#### 三、使用DBSCAN進行分類
+## 三、使用DBSCAN進行分類
 [參考網站](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html)  
 
 採用sklearn.cluster.DBSCAN，參數說明如下:  

@@ -217,4 +217,3 @@ plt.xlabel('Silhouette coefficient')
 plt.tight_layout()
 #plt.savefig('silhouette.png', dpi=300)
 plt.show()
-

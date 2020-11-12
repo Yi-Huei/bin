@@ -1,5 +1,7 @@
-# 使用矩陣解聯立方程式
+# 使用Numpy矩陣解聯立方程式
 [方程式來源](http://www.math-exercises.com/equations-and-inequalities/systems-of-linear-equations-and-inequalities)
+
+本篇python的矩陣運算會使用到numpy
 
 例如:  
 3x+2y=10  
@@ -19,7 +21,7 @@ $A \begin{bmatrix}x\\y\end{bmatrix} = B$
 
 $\begin{bmatrix}x\\y\end{bmatrix} = A^{-1} . B$
 
-### 利用numpy進行解題
+## 題目一
 
 # 3x+2y=10
 # 1x+3y=8
@@ -35,8 +37,8 @@ print(np.linalg.inv(A).dot(B))
 
 解:x=2,y=2
 
-#### 題目:4a
-[方程式來源](http://www.math-exercises.com/equations-and-inequalities/systems-of-linear-equations-and-inequalities)  
+## 題目二:
+[方程式來源4a](http://www.math-exercises.com/equations-and-inequalities/systems-of-linear-equations-and-inequalities)  
 2a+2b-c+d=4  
 4a+3b-c+2d=6  
 8a+5b-3c+4d=12  
@@ -52,8 +54,8 @@ print(np.linalg.inv(A).dot(B))
 
 解:a=1,b=1,c=-1,d=-1
 
-#### 題目:4b
-[方程式來源](http://www.math-exercises.com/equations-and-inequalities/systems-of-linear-equations-and-inequalities)  
+## 題目三:
+[方程式來源4b](http://www.math-exercises.com/equations-and-inequalities/systems-of-linear-equations-and-inequalities)  
 -a+b-c+d=0  
 -2a+b+c-3d=0  
 a+2b-3c+d=0  
@@ -67,7 +69,7 @@ B = np.array([0,0,0,0]).reshape(4, 1)
 
 print(np.linalg.inv(A).dot(B))
 
-#### 請寫一個方法(my_solve)解答4a題目
+## 請寫一個方法解答4a題目
 
 A = np.array([2,2,-1,1,4,3,-1,2,8,5,-3,4,3,3,-2,2])
 B = np.array([4,6,12,6])
@@ -78,4 +80,3 @@ def my_solve(A, B):
     print(np.linalg.inv(A).dot(B))
 
 my_solve(A, B)
-

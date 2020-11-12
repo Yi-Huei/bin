@@ -5,7 +5,7 @@
 
 本範例使用一組隨機資料，取得每一點之間距離後，使用Agglomerative hierarchy之3種方法分群後，再繪製階層圖
 
-### 步驟一、製作一組隨機資料
+## 步驟一、製作一組隨機資料
 
 # 製作一組隨機資料
 import pandas as pd
@@ -20,7 +20,7 @@ X = np.random.random_sample([5, 3])*10  # 返回一個隨機矩陣
 df = pd.DataFrame(X, columns=variables, index=labels)
 df
 
-### 步驟二、取得每一點之間距離
+## 步驟二、取得每一點之間距離
 
 from scipy.spatial.distance import pdist, squareform  #計算空間距離函數
 
@@ -29,7 +29,7 @@ row_dist = pd.DataFrame(squareform(pdist(df, metric='euclidean')),
                         index=labels)
 row_dist
 
-### 步驟三、使用Agglomerative hierarchy進行分層
+## 步驟三、使用Agglomerative hierarchy進行分層
 **凝聚分層集群合併方式有:**
 1. 單一鏈結(Single Linkage):取兩集群中最"近"的兩個點
 2. 完整鏈結(Complete Linkage): 取兩集群中最"遠"的兩個點
@@ -41,7 +41,7 @@ row_dist
 2. metric，距離運算公式->euclidean(歐式)  
 3. ward，設定變異數大小以下，進行合併
 
-##### 方法一:
+### 方法一:
 
 from scipy.cluster.hierarchy import linkage
 
@@ -52,7 +52,7 @@ pd.DataFrame(row_clusters,
              index=['cluster %d' % (i + 1)
                     for i in range(row_clusters.shape[0])])
 
-##### 方法二:
+### 方法二:
 
 row_clusters = linkage(pdist(df, metric='euclidean'), method='complete')
 pd.DataFrame(row_clusters,
@@ -61,7 +61,7 @@ pd.DataFrame(row_clusters,
              index=['cluster %d' % (i + 1) 
                     for i in range(row_clusters.shape[0])])
 
-##### 方法三:
+### 方法三:
 
 row_clusters = linkage(df.values, method='complete', metric='euclidean')
 pd.DataFrame(row_clusters,
@@ -89,4 +89,3 @@ plt.show()
 
 圖片階層示意
 <img src="https://github.com/Yi-Huei/bin/blob/master/images/hierarchy_img.png?raw=true" width="500px" />
-

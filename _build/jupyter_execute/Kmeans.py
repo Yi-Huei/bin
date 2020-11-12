@@ -11,7 +11,7 @@
 3. 重新計算各組集群中心，使用平均數
 4. 重複2. 3.動作直到集群不變
 
-### 步驟一:產生亂數資料
+## 步驟一:產生亂數資料
 [make_blobs參考網站](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html)
 
 import matplotlib.pyplot as plt
@@ -29,7 +29,7 @@ X.shape, y_true.shape
 
 300筆資料，2個變數
 
-### 步驟二:使用Kmeans進行分類
+## 步驟二:使用Kmeans進行分類
 [KMeans參考網站](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
 
 非監督式學習一般不需要做資料切割，因為無標記(沒有y)，所以即使分出測試資料，也無法計算分數  
@@ -56,7 +56,7 @@ len(y_true[y_true == y_kmeans])
 原因為預測資料y_kmeans並未依y_true進行編碼。  
 本例之狀況可能為y_true編號1，y_kmeans為3。
 
-### 步驟三、查看兩組分類情形
+## 步驟三、查看兩組分類情形
 
 #### 方法一
 
@@ -85,7 +85,7 @@ print([i for i, j in enumerate(y_kmeans) if j==3])
 
 y_true=1與y_kmeans=3之索引值完全相同
 
-### 步驟四: 結果
+## 步驟四: 結果
 
 # 4個質心(x,y)
 kmeans.cluster_centers_
