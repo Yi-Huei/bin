@@ -13,6 +13,7 @@
 - file: 深度學習_女裝配件辨識
 - file: EDA-美國計程車小費
 - file: EDA-鐵達尼號
+- file: BreastCancer特徵工程
 - file: 非監督學習演算法
   sections:
     - file: Kmeans

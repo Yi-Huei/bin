@@ -149,6 +149,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="BreastCancer特徵工程.html">
+   Breast Cancer資料集特徵工程
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="非監督學習演算法.html">
    非監督學習演算法
   </a>
@@ -1247,8 +1252,8 @@ n_neighbors=5，比較相鄰5個點</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 2, 0, 1, 1, 0, 0, 1, 1, 1, 1, 2, 2, 1, 1, 0, 2, 1, 2, 2,
-       0, 0, 2, 2, 0, 0, 0, 2, 1, 0, 0, 1, 2, 0])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, 1, 0, 1, 2, 0, 1, 0, 0, 1, 2, 2, 2, 2, 1, 1, 0, 1, 1, 0,
+       1, 2, 1, 0, 0, 2, 1, 2, 1, 1, 1, 2, 2, 0])
 </pre></div>
 </div>
 </div>
@@ -1262,7 +1267,7 @@ n_neighbors=5，比較相鄰5個點</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
-        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True, False,  True,  True,  True,  True,
         True,  True,  True,  True,  True,  True,  True,  True,  True,
         True,  True,  True,  True,  True,  True,  True,  True,  True])
 </pre></div>
@@ -1282,7 +1287,7 @@ n_neighbors=5，比較相鄰5個點</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9722222222222222
 </pre></div>
 </div>
 </div>
@@ -1313,7 +1318,7 @@ n_neighbors=5，比較相鄰5個點</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9722222222222222
 </pre></div>
 </div>
 </div>
@@ -1331,9 +1336,9 @@ n_neighbors=5，比較相鄰5個點</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[13,  0,  0],
-       [ 0, 12,  0],
-       [ 0,  0, 11]], dtype=int64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[10,  0,  0],
+       [ 0, 15,  2],
+       [ 0,  0,  9]], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -1377,8 +1382,8 @@ n_neighbors=5，比較相鄰5個點</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n_neighbors=5準確度-&gt; 0.9722222222222222
-n_neighbors=11準確度-&gt; 0.9444444444444444
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n_neighbors=5準確度-&gt; 1.0
+n_neighbors=11準確度-&gt; 0.9722222222222222
 </pre></div>
 </div>
 </div>
