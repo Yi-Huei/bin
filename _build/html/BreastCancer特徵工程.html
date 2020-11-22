@@ -36,7 +36,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="非監督學習演算法" href="非監督學習演算法.html" />
+    <link rel="next" title="Regularization" href="Regularization.html" />
     <link rel="prev" title="EDA-鐵達尼號" href="EDA-鐵達尼號.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -151,6 +151,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Breast Cancer資料集特徵工程
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Regularization.html">
+   Regularization
   </a>
  </li>
  <li class="toctree-l1">
@@ -795,36 +800,36 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1) worst concave points           0.127700
- 2) worst perimeter                0.122346
- 3) mean concave points            0.113228
- 4) worst area                     0.105790
- 5) worst radius                   0.090935
- 6) mean concavity                 0.077840
- 7) mean perimeter                 0.043483
- 8) mean area                      0.041962
- 9) mean radius                    0.041266
-10) area error                     0.034684
-11) worst concavity                0.030013
-12) perimeter error                0.018281
-13) worst texture                  0.016779
-14) worst compactness              0.015474
-15) mean compactness               0.013475
-16) mean texture                   0.012959
-17) worst symmetry                 0.012103
-18) worst smoothness               0.012051
-19) radius error                   0.010964
-20) concavity error                0.007925
-21) concave points error           0.006475
-22) worst fractal dimension        0.006192
-23) mean smoothness                0.006013
-24) smoothness error               0.005498
-25) fractal dimension error        0.005002
-26) compactness error              0.004660
-27) mean symmetry                  0.004599
-28) symmetry error                 0.004418
-29) mean fractal dimension         0.004241
-30) texture error                  0.003645
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1) worst perimeter                0.137302
+ 2) worst radius                   0.128653
+ 3) worst concave points           0.122209
+ 4) mean concave points            0.098379
+ 5) worst area                     0.083493
+ 6) mean perimeter                 0.068128
+ 7) mean area                      0.050879
+ 8) mean radius                    0.045289
+ 9) mean concavity                 0.044522
+10) area error                     0.035553
+11) worst concavity                0.028792
+12) perimeter error                0.019059
+13) radius error                   0.014629
+14) worst texture                  0.014250
+15) mean texture                   0.014246
+16) worst compactness              0.013090
+17) worst symmetry                 0.009999
+18) worst smoothness               0.009996
+19) mean compactness               0.009850
+20) concavity error                0.007262
+21) mean smoothness                0.005491
+22) worst fractal dimension        0.005321
+23) symmetry error                 0.004883
+24) mean symmetry                  0.004822
+25) fractal dimension error        0.004529
+26) smoothness error               0.004301
+27) texture error                  0.003944
+28) compactness error              0.003924
+29) concave points error           0.003702
+30) mean fractal dimension         0.003506
 </pre></div>
 </div>
 </div>
@@ -866,7 +871,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([27, 22], dtype=int64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([22, 20], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -898,35 +903,35 @@ dtype: int64
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>worst concave points</th>
       <th>worst perimeter</th>
+      <th>worst radius</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>461</th>
-      <td>0.26250</td>
-      <td>251.20</td>
+      <th>463</th>
+      <td>82.68</td>
+      <td>12.77</td>
     </tr>
     <tr>
-      <th>72</th>
-      <td>0.18990</td>
-      <td>151.60</td>
+      <th>404</th>
+      <td>84.11</td>
+      <td>13.18</td>
     </tr>
     <tr>
-      <th>354</th>
-      <td>0.03922</td>
-      <td>79.62</td>
+      <th>360</th>
+      <td>86.82</td>
+      <td>13.72</td>
     </tr>
     <tr>
-      <th>495</th>
-      <td>0.10170</td>
-      <td>103.90</td>
+      <th>452</th>
+      <td>85.07</td>
+      <td>13.09</td>
     </tr>
     <tr>
-      <th>276</th>
-      <td>0.01111</td>
-      <td>77.37</td>
+      <th>361</th>
+      <td>92.94</td>
+      <td>14.20</td>
     </tr>
     <tr>
       <th>...</th>
@@ -934,29 +939,29 @@ dtype: int64
       <td>...</td>
     </tr>
     <tr>
-      <th>204</th>
-      <td>0.10150</td>
-      <td>96.05</td>
+      <th>350</th>
+      <td>83.61</td>
+      <td>13.28</td>
     </tr>
     <tr>
-      <th>334</th>
-      <td>0.03983</td>
-      <td>84.53</td>
+      <th>247</th>
+      <td>105.00</td>
+      <td>14.39</td>
     </tr>
     <tr>
-      <th>254</th>
-      <td>0.19990</td>
-      <td>163.10</td>
+      <th>188</th>
+      <td>79.57</td>
+      <td>12.57</td>
     </tr>
     <tr>
-      <th>510</th>
-      <td>0.10560</td>
-      <td>81.25</td>
+      <th>66</th>
+      <td>67.03</td>
+      <td>10.41</td>
     </tr>
     <tr>
-      <th>538</th>
-      <td>0.00000</td>
-      <td>57.17</td>
+      <th>288</th>
+      <td>78.27</td>
+      <td>11.86</td>
     </tr>
   </tbody>
 </table>
@@ -990,35 +995,35 @@ dtype: int64
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>worst concave points</th>
       <th>worst perimeter</th>
+      <th>worst radius</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>355</th>
-      <td>0.09265</td>
-      <td>89.02</td>
+      <th>117</th>
+      <td>127.10</td>
+      <td>18.81</td>
     </tr>
     <tr>
-      <th>213</th>
-      <td>0.10990</td>
-      <td>120.40</td>
+      <th>421</th>
+      <td>114.10</td>
+      <td>16.46</td>
     </tr>
     <tr>
-      <th>453</th>
-      <td>0.10690</td>
-      <td>103.10</td>
+      <th>97</th>
+      <td>68.81</td>
+      <td>10.92</td>
     </tr>
     <tr>
-      <th>157</th>
-      <td>0.08436</td>
-      <td>120.30</td>
+      <th>112</th>
+      <td>107.00</td>
+      <td>15.30</td>
     </tr>
     <tr>
-      <th>511</th>
-      <td>0.07955</td>
-      <td>101.70</td>
+      <th>121</th>
+      <td>145.40</td>
+      <td>22.25</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1026,29 +1031,29 @@ dtype: int64
       <td>...</td>
     </tr>
     <tr>
-      <th>156</th>
-      <td>0.15150</td>
-      <td>132.90</td>
+      <th>500</th>
+      <td>109.70</td>
+      <td>16.76</td>
     </tr>
     <tr>
-      <th>119</th>
-      <td>0.11850</td>
-      <td>129.20</td>
+      <th>475</th>
+      <td>93.22</td>
+      <td>14.09</td>
     </tr>
     <tr>
-      <th>482</th>
-      <td>0.13350</td>
-      <td>94.94</td>
+      <th>220</th>
+      <td>99.71</td>
+      <td>15.34</td>
     </tr>
     <tr>
-      <th>109</th>
-      <td>0.08278</td>
-      <td>83.99</td>
+      <th>92</th>
+      <td>104.50</td>
+      <td>16.36</td>
     </tr>
     <tr>
-      <th>266</th>
-      <td>0.07926</td>
-      <td>78.28</td>
+      <th>518</th>
+      <td>99.31</td>
+      <td>15.05</td>
     </tr>
   </tbody>
 </table>
@@ -1080,7 +1085,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.41343911, -0.16339967]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.18192293,  0.02546458]])
 </pre></div>
 </div>
 </div>
@@ -1101,7 +1106,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9385964912280702
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8859649122807017
 </pre></div>
 </div>
 </div>
@@ -1157,7 +1162,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9298245614035088
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9035087719298246
 </pre></div>
 </div>
 </div>
@@ -1268,7 +1273,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.98474158])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.98230288])
 </pre></div>
 </div>
 </div>
@@ -1321,7 +1326,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9210526315789473
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8771929824561403
 </pre></div>
 </div>
 </div>
@@ -1397,11 +1402,11 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>特徵選取_隨機森林準確度= 0.35964912280701755
-特徵萃取_PCA準確度= 0.9649122807017544
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>特徵選取_隨機森林準確度= 0.9122807017543859
+特徵萃取_PCA準確度= 0.9298245614035088
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>特徵萃取_LDA準確度= 0.9122807017543859
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>特徵萃取_LDA準確度= 0.8947368421052632
 </pre></div>
 </div>
 </div>
@@ -1438,7 +1443,7 @@ dtype: int64
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="EDA-鐵達尼號.html" title="previous page">EDA-鐵達尼號</a>
-    <a class='right-next' id="next-link" href="非監督學習演算法.html" title="next page">非監督學習演算法</a>
+    <a class='right-next' id="next-link" href="Regularization.html" title="next page">Regularization</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
